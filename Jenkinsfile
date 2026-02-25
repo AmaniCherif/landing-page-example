@@ -32,7 +32,7 @@ pipeline {
           keyFileVariable: 'SSH_KEY',
           usernameVariable: 'SSH_USER'
         )]) {
-          sh '''
+          sh(label: 'Deploy via SSH/SCP (bash)', script: '''#!/usr/bin/env bash
             set -euo pipefail
 
             mkdir -p ~/.ssh
@@ -45,7 +45,7 @@ pipeline {
 
             ssh $SSH_OPTS "$SSH_USER@$ALWAYS_HOST" "mkdir -p $ALWAYS_PATH"
             scp $SSH_OPTS -p index.html "$SSH_USER@$ALWAYS_HOST:$ALWAYS_PATH/"
-          '''
+          ''')
         }
       }
     }
