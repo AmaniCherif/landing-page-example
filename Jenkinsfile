@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { label 'wsl' }
 
   environment {
     ALWAYS_HOST = 'ssh-amani.alwaysdata.net'
